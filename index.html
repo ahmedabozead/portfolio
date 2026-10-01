@@ -262,7 +262,7 @@ ${i===0?`<div class="stat mono"><div><b data-n="10003">0</b><small>Records</smal
 <div class="det">${p.more}</div>
 <div class="row">${p.gh?`<a class="btn s gh" href="${p.gh}" target="_blank" rel="noopener">GitHub</a>`:""}<button class="btn s" data-i="${i}" aria-expanded="false">View Details</button></div></article>`).join("");
 $("pg").addEventListener("click",e=>{const b=e.target.closest("button[data-i]");if(!b)return;const c=$("p"+b.dataset.i);const o=c.classList.toggle("open");b.setAttribute("aria-expanded",o);b.textContent=o?"Hide Details":"View Details"});
-const WEB3FORMS_KEY=""; /* paste your Web3Forms access key between the quotes */
+const WEB3FORMS_KEY="09e44335-767d-4db7-85fe-ee572260d704"; /* Web3Forms public access key */
 $("st").textContent=WEB3FORMS_KEY?"Your message is sent straight to my inbox.":"This opens your email app with the message pre-filled.";
 $("cf").addEventListener("submit",async e=>{e.preventDefault();const f=e.target,st=$("st"),btn=f.querySelector("button");if(f.b.checked)return;
 const mail=()=>{location.href="mailto:ahmednb34963@gmail.com?subject="+encodeURIComponent("Portfolio contact from "+f.n.value)+"&body="+encodeURIComponent(f.m.value+"\n\n— "+f.n.value+" ("+f.e.value+")")};
