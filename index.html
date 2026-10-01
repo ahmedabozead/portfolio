@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ahmed Abozead — Data Engineer</title>
+<meta name="description" content="Portfolio of Ahmed Abozead, Junior Data Engineer in Cairo, Egypt. Python, SQL, ETL pipelines, data validation and SQL Server projects.">
+<style>
+:root{--bg:#0b1020;--bg2:#111833;--card:#141c38;--bd:#25305a;--tx:#e6eaf7;--mut:#94a0c4;--ac:#38bdf8;--ac2:#34d399;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){--bg:#f7f9fc;--bg2:#eef2f9;--card:#fff;--bd:#d9e0ee;--tx:#0f172a;--mut:#56617f;--ac:#0369a1;--ac2:#047857}}
+:root[data-theme="light"]{--bg:#f7f9fc;--bg2:#eef2f9;--card:#fff;--bd:#d9e0ee;--tx:#0f172a;--mut:#56617f;--ac:#0369a1;--ac2:#047857}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:calc(72px + env(safe-area-inset-top,0px))}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.65 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+a{color:inherit;text-decoration:none}
+.w{max-width:1080px;margin:0 auto;padding:0 20px}
+section{padding:80px 0}
+h2{font-size:clamp(1.6rem,3vw,2rem);margin:0 0 8px;letter-spacing:-.02em}
+.eyebrow{color:var(--ac);font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:6px}
+.lead{color:var(--mut);max-width:680px;margin:0 0 32px}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--bd)}
+nav .w{display:flex;align-items:center;justify-content:space-between;height:60px;gap:12px}
+nav ul{display:flex;gap:18px;list-style:none;margin:0;padding:0;overflow-x:auto}
+nav ul a{color:var(--mut);font-size:.9rem;white-space:nowrap}nav ul a:hover{color:var(--tx)}
+.btn{display:inline-block;padding:11px 20px;border-radius:8px;border:1px solid var(--bd);font-weight:600;cursor:pointer;background:transparent;color:var(--tx);font-size:.95rem;transition:.2s}
+.btn:hover{border-color:var(--ac);transform:translateY(-1px)}
+.btn.p{background:var(--ac);color:#04121f;border-color:var(--ac)}
+.btn.s{padding:8px 14px;font-size:.85rem}
+#theme{padding:6px 10px}
+.hero{padding:90px 0 70px}
+.hero h1{font-size:clamp(2.4rem,7vw,4rem);margin:0;letter-spacing:-.03em;line-height:1.1}
+.hero h3{font-weight:500;color:var(--ac);margin:10px 0 18px;font-size:1.4rem}
+.hero p{color:var(--mut);max-width:620px;font-size:1.1rem}
+.row{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
+.flow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:40px}
+.node{padding:8px 14px;border:1px solid var(--bd);border-radius:8px;background:var(--card);font-size:.85rem}
+.arr{color:var(--ac)}
+.grid{display:grid;gap:16px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr))}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:22px;transition:.2s}
+.card:hover{border-color:var(--ac);transform:translateY(-2px)}
+.card h4{margin:0 0 6px;font-size:1.1rem}
+.chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px}
+.chip{font-size:.8rem;padding:4px 11px;border-radius:999px;border:1px solid var(--bd);background:var(--bg2)}
+.chip.u{border-color:var(--ac);color:var(--ac)}
+.chip.f{border-style:dashed;color:var(--mut)}
+.legend{display:flex;gap:18px;font-size:.85rem;color:var(--mut);margin-bottom:20px;flex-wrap:wrap}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}
+.tag{font-size:.75rem;color:var(--ac2);border:1px solid var(--bd);padding:2px 9px;border-radius:6px}
+.pj{display:flex;flex-direction:column}
+.pj p{color:var(--mut);margin:4px 0}
+.pj ul{margin:8px 0;padding-left:18px;color:var(--mut);font-size:.92rem}
+.det{display:none;margin-top:10px;padding-top:12px;border-top:1px solid var(--bd)}
+.pj.open .det{display:block}
+.pj .row{margin-top:auto;padding-top:14px}
+.pipe{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:.78rem;margin:8px 0}
+.pipe span.n{padding:3px 9px;border-radius:6px;background:var(--bg2);border:1px solid var(--bd)}
+.wf{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:10px;counter-reset:s}
+.wf div{padding:14px;border:1px solid var(--bd);border-radius:10px;background:var(--card);text-align:center;font-size:.9rem;counter-increment:s}
+.wf div:before{content:counter(s,decimal-leading-zero);display:block;color:var(--ac);font-size:.75rem;font-family:ui-monospace,monospace}
+.tl{border-left:2px solid var(--bd);padding-left:20px}
+.tl ul{color:var(--mut);padding-left:18px}
+.meta{color:var(--mut);font-size:.9rem}
+form{display:grid;gap:12px}
+input,textarea{width:100%;padding:11px 13px;border-radius:8px;border:1px solid var(--bd);background:var(--bg2);color:var(--tx);font:inherit}
+input:focus,textarea:focus,a:focus-visible,button:focus-visible{outline:2px solid var(--ac);outline-offset:2px}
+.note{font-size:.8rem;color:var(--mut)}
+footer{border-top:1px solid var(--bd);padding:36px 0;color:var(--mut);font-size:.9rem}
+footer .w{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px}
+.rv{opacity:0;transform:translateY(26px) scale(.97);filter:blur(4px);transition:opacity .7s,transform .7s,filter .7s}.rv.in{opacity:1;transform:none;filter:none}
+.sr{opacity:0;transform:translateY(22px) scale(.985);filter:blur(4px);transition:opacity .7s,transform .7s,filter .7s;transition-delay:calc(var(--i)*.11s)}.in>.sr{opacity:1;transform:none;filter:none}
+.hi{animation:hi .8s cubic-bezier(.2,.7,.2,1) backwards;animation-delay:calc(var(--d)*.12s + 1.2s)}
+@keyframes hi{from{opacity:0;transform:translateY(18px);filter:blur(6px)}}
+#ld{position:fixed;inset:0;z-index:100;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;transition:opacity .6s,visibility .6s}
+#ld.x{opacity:0;visibility:hidden}#ld b{font-size:1.5rem}
+.lp{display:flex;gap:8px;align-items:center;font-size:.8rem;margin-top:8px}
+.lp span:not(.arr){padding:4px 10px;border:1px solid var(--bd);border-radius:6px;animation:gl 1.2s infinite}
+.lp span:nth-child(3){animation-delay:.3s}.lp span:nth-child(5){animation-delay:.6s}
+@keyframes gl{50%{box-shadow:0 0 14px var(--ac);color:var(--ac);border-color:var(--ac)}}
+.hero{position:relative;overflow:hidden}.hero .w{position:relative;z-index:1}
+#bg{position:absolute;left:-20px;top:-100px;width:calc(100% + 40px);height:calc(100% + 200px);z-index:0;pointer-events:none;will-change:transform}
+.hero:before{content:"";position:absolute;inset:-50%;z-index:0;background:radial-gradient(circle at 30% 30%,color-mix(in srgb,var(--ac) 14%,transparent),transparent 40%),radial-gradient(circle at 70% 60%,color-mix(in srgb,var(--ac2) 10%,transparent),transparent 40%);animation:dr 24s ease-in-out infinite alternate}
+@keyframes dr{to{transform:translate(6%,4%) rotate(8deg)}}
+.hero:after{content:"";position:absolute;inset:0;z-index:0;background-image:linear-gradient(var(--bd) 1px,transparent 1px),linear-gradient(90deg,var(--bd) 1px,transparent 1px);background-size:48px 48px;opacity:.25;-webkit-mask-image:radial-gradient(circle at 50% 40%,#000,transparent 70%);mask-image:radial-gradient(circle at 50% 40%,#000,transparent 70%);animation:gm 6s linear infinite}
+@keyframes gm{to{background-position:0 48px}}
+nav{transition:background .3s,box-shadow .3s}nav.sc{background:color-mix(in srgb,var(--bg) 65%,transparent);box-shadow:0 8px 24px -14px rgba(0,0,0,.6)}
+nav ul a{position:relative;padding:6px 0;transition:color .2s}
+nav ul a:after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--ac);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+nav ul a:hover:after,nav ul a.act:after{transform:none}nav ul a.act{color:var(--tx)}
+.node,.pipe .n,.wf div{transition:transform .4s,border-color .4s,box-shadow .4s,color .4s}
+.on{border-color:var(--ac)!important;color:var(--ac);box-shadow:0 0 16px color-mix(in srgb,var(--ac) 50%,transparent);transform:scale(1.07)}
+.chip{transition:transform .25s,border-color .25s,box-shadow .25s}
+.chip:hover{transform:translateY(-3px) scale(1.06);border-color:var(--ac);box-shadow:0 0 14px color-mix(in srgb,var(--ac) 45%,transparent)}
+.chip.u:hover:before{content:"● ";color:var(--ac2)}
+.pj{position:relative;overflow:hidden;transition:opacity .7s,filter .7s,transform .3s,box-shadow .3s,border-color .3s}
+.pj:hover{transform:translateY(-6px) scale(1.015);box-shadow:0 18px 40px -20px var(--ac)}
+.pj:before{content:"";position:absolute;inset:0;border-radius:12px;padding:1px;background:linear-gradient(120deg,var(--ac),var(--ac2),var(--ac));background-size:200% 100%;-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transition:opacity .3s;animation:bs 3s linear infinite;pointer-events:none}
+.pj:hover:before{opacity:1}@keyframes bs{to{background-position:200% 0}}
+.pj .gh{opacity:.6;transform:translateX(-8px);transition:.3s}.pj:hover .gh{opacity:1;transform:none}
+.det{display:block;max-height:0;overflow:hidden;opacity:0;margin:0;padding:0;border:0;transition:max-height .5s,opacity .5s,margin .5s,padding .5s}
+.pj.open .det{max-height:220px;opacity:1;margin-top:10px;padding-top:12px;border-top:1px solid var(--bd)}
+.stat{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:10px 0;padding:10px 12px;border:1px solid var(--bd);border-radius:8px;background:var(--bg2)}
+.stat b{display:block;font-size:1.4rem;color:var(--ac2)}.stat small{color:var(--mut);font-size:.72rem}.stat div{text-align:center}
+.tl{position:relative;border-left:0}
+.tl:before{content:"";position:absolute;left:0;top:0;bottom:0;width:2px;background:linear-gradient(var(--ac),var(--ac2));transform:scaleY(0);transform-origin:top;transition:transform 1.4s .4s}
+.in>.tl:before{transform:none}
+.tl:after{content:"";position:absolute;left:-5px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--ac);box-shadow:0 0 12px var(--ac)}
+#contact .card p{transition:transform .3s}#contact .card p:hover{transform:translateX(6px)}
+.btn.p:hover{box-shadow:0 0 22px color-mix(in srgb,var(--ac) 55%,transparent)}
+.cur{position:fixed;left:0;top:0;width:32px;height:32px;margin:-16px 0 0 -16px;border:1.5px solid var(--ac);border-radius:50%;pointer-events:none;z-index:200;opacity:0;transition:width .2s,height .2s,margin .2s,background .2s}
+.cur.big{width:56px;height:56px;margin:-28px 0 0 -28px;background:color-mix(in srgb,var(--ac) 12%,transparent)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}.rv,.sr,.hi{opacity:1;transform:none;filter:none}#ld{display:none}}
+</style>
+</head>
+<body>
+<div id="ld" role="status" aria-label="Loading"><b>Ahmed Abozead</b><span class="meta">Data Engineer</span><div class="lp mono"><span>Extract</span><span class="arr">→</span><span>Transform</span><span class="arr">→</span><span>Load</span></div></div>
+<nav><div class="w">
+<a href="#top" class="mono" style="font-weight:700">ahmed.abozead</a>
+<ul id="links"></ul>
+<button class="btn s" id="theme" aria-label="Toggle light or dark theme">◐</button>
+</div></nav>
+
+<header class="hero" id="top"><div class="w">
+<div class="eyebrow mono">Cairo, Egypt</div>
+<h1>Ahmed Abozead</h1>
+<h3 class="mono">Data Engineer</h3>
+<p>Building reliable data pipelines, transforming raw data into clean and structured datasets, and working with Python, SQL, ETL, and relational databases.</p>
+<div class="row">
+<a class="btn p" href="#projects">View My Projects</a>
+<a class="btn" href="#contact">Contact Me</a>
+<a class="btn" href="https://www.linkedin.com/in/ahmed-abozead" target="_blank" rel="noopener">LinkedIn</a>
+<a class="btn" href="https://github.com/ahmedabozead" target="_blank" rel="noopener">GitHub</a>
+</div>
+<div class="flow mono" aria-label="Data flow">
+<span class="node">Data</span><span class="arr">→</span><span class="node">ETL</span><span class="arr">→</span><span class="node">Transformation</span><span class="arr">→</span><span class="node">Database</span>
+</div>
+</div></header>
+
+<section id="about"><div class="w rv">
+<div class="eyebrow mono">01 / About</div><h2>About Me</h2>
+<p class="lead">I'm a Junior Data Engineer with hands-on experience through projects in Python, SQL, ETL, Data Cleaning, Data Validation, and SQL Server. I build ETL pipelines that extract data, transform it, validate it, and load it into databases.</p>
+<div class="grid g2">
+<div class="card"><h4>Hands-on experience</h4><div class="chips" id="hands"></div></div>
+<div class="card"><h4>Concepts I know</h4><p class="meta">Learning-stage knowledge, not professional experience.</p><div class="chips" id="concepts"></div></div>
+</div>
+</div></section>
+
+<section id="workflow" style="background:var(--bg2)"><div class="w rv">
+<div class="eyebrow mono">02 / Approach</div><h2>How I Work With Data</h2>
+<p class="lead">How I understand and structure a data pipeline. My project work covers the middle steps; the wider stack is how I think about the full picture, not a claim of production use.</p>
+<div class="wf" id="wf"></div>
+</div></section>
+
+<section id="skills"><div class="w rv">
+<div class="eyebrow mono">03 / Skills</div><h2>Skills</h2>
+<div class="legend"><span><span class="chip u">Used</span> in projects</span><span><span class="chip f">Familiar</span> learning / conceptual knowledge</span></div>
+<div class="grid g2" id="skillgrid"></div>
+</div></section>
+
+<section id="projects" style="background:var(--bg2)"><div class="w">
+<div class="eyebrow mono">04 / Projects</div><h2>Projects</h2>
+<p class="lead">Data engineering pipelines and analytics dashboards I built end to end.</p>
+<div class="grid g2" id="pg"></div>
+</div></section>
+
+<section id="experience"><div class="w rv">
+<div class="eyebrow mono">05 / Experience</div><h2>Experience</h2>
+<div class="tl"><h4 style="margin:0">Technology Instructor</h4>
+<div class="meta">Educational Center · September 2024 – September 2025</div>
+<ul><li>Delivered technology courses covering basic computing, digital literacy, and problem-solving skills.</li><li>Designed and delivered interactive lessons.</li><li>Explained technical concepts in a clear and accessible way.</li><li>Adapted lessons to different learning levels.</li></ul></div>
+</div></section>
+
+<section id="education" style="background:var(--bg2)"><div class="w rv">
+<div class="eyebrow mono">06 / Education</div><h2>Education</h2>
+<div class="card tl"><h4>Bachelor of Computer and Information Technology</h4><div class="meta">Kafr El-Sheikh University · September 2021 – June 2025</div></div>
+</div></section>
+
+<section id="contact"><div class="w rv">
+<div class="eyebrow mono">07 / Contact</div><h2>Contact</h2>
+<p class="lead">Have a data project or opportunity in mind? Let's connect.</p>
+<div class="grid g2">
+<div class="card">
+<p><b>Email</b><br><a href="mailto:ahmednb34963@gmail.com" style="color:var(--ac)">ahmednb34963@gmail.com</a></p>
+<p><b>Phone</b><br><a href="tel:01065935958" style="color:var(--ac)">01065935958</a></p>
+<p><b>LinkedIn</b><br><a href="https://www.linkedin.com/in/ahmed-abozead" target="_blank" rel="noopener" style="color:var(--ac)">linkedin.com/in/ahmed-abozead</a></p>
+<p><b>GitHub</b><br><a href="https://github.com/ahmedabozead" target="_blank" rel="noopener" style="color:var(--ac)">github.com/ahmedabozead</a></p>
+</div>
+<div class="card">
+<form id="cf">
+<label>Name<input name="n" required autocomplete="name"></label>
+<label>Email<input name="e" type="email" required autocomplete="email"></label>
+<label>Message<textarea name="m" rows="4" required></textarea></label>
+<input type="checkbox" name="b" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
+<button class="btn p" type="submit">Send Message</button>
+<span class="note" id="st" role="status">This opens your email app with the message pre-filled.</span>
+</form>
+</div>
+</div>
+</div></section>
+
+<footer><div class="w">
+<div><b style="color:var(--tx)">Ahmed Abozead</b><br>Data Engineer<br>Cairo, Egypt</div>
+<div><a href="https://www.linkedin.com/in/ahmed-abozead" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://github.com/ahmedabozead" target="_blank" rel="noopener">GitHub</a> · <a href="mailto:ahmednb34963@gmail.com">Email</a><br>© 2026 Ahmed Abozead. All rights reserved.</div>
+</div></footer>
+
+<script>
+/* ===== Editable data ===== */
+const NAV=["About","Workflow","Skills","Projects","Experience","Education","Contact"];
+const HANDS=["Python","SQL","Pandas","SQL Server","SQLite","PyODBC","Data Cleaning","Data Transformation","Data Validation","Data Quality","Relational Databases"];
+const CONCEPTS=["Data Warehousing","Dimensional Modeling","Star Schema","Fact & Dimension Tables","Incremental Loading","CDC","Slowly Changing Dimensions"];
+const WORKFLOW=["Source Data","Extract","Clean","Transform","Validate","Load","Database","Analytics"];
+const SKILLS=[
+ {t:"Programming",u:["Python","SQL","Bash","Object-Oriented Programming","Data Structures"]},
+ {t:"Databases",u:["SQL Server","PostgreSQL","MySQL","SQLite","Database Design","Stored Procedures","Views","Transactions","Query Optimization","Indexing"]},
+ {t:"Data Engineering",u:["ETL Pipelines","Batch Processing","Data Extraction","Data Transformation","Data Loading","Data Validation","Data Quality","PyODBC","Relational Data Modeling"]},
+ {t:"Data Processing & Analytics",u:["Pandas","NumPy","Power BI","DAX","Excel","Power Query","Pivot Tables"]},
+ {t:"Familiar With",f:["Apache Spark","PySpark","Spark SQL","Apache Airflow","Databricks","dbt","SSIS"]}
+];
+const PROJECTS=[
+ {n:"Sales Data Engineering ETL Pipeline",gh:"https://github.com/ahmedabozead/sales-data-engineering",
+  d:"Built an end-to-end batch ETL pipeline to ingest, transform, validate, and load customer, product, and sales data.",
+  tech:["Python","Pandas","SQLite","SQL Server","SQL","Git/GitHub"],
+  flow:["Raw Data","Extract","Transform","Validate","Load","SQLite / SQL Server"],
+  key:["Processed 10,003 sales records → 9,774 validated records","Removed duplicates, handled missing values, removed non-positive quantities, validated dates","Data-quality checks: duplicate keys, orphan records, foreign-key relationships, business rules","Curated datasets loaded into SQLite; SQL Server loading and validation workflows","Python orchestration and logging"],
+  more:"Validated product references and used normalized relational tables across customer, product, and sales data."},
+ {n:"Retail ETL Pipeline",gh:"https://github.com/ahmedabozead/Retail_ETL",
+  d:"Built an ETL pipeline to extract, transform, validate, and load retail sales data into SQL Server.",
+  tech:["Python","Pandas","SQL Server","PyODBC"],
+  flow:["Extract","Clean","Standardize","Validate","Load via PyODBC","SQL Server"],
+  key:["Removed duplicate records and handled missing values","Cleaned invalid identifiers, date values, and sales values","Standardized data formats","Validation checks before loading","Python ↔ SQL Server via PyODBC"],
+  more:"Focused on getting clean, validated retail data into SQL Server."},
+ {n:"Supermarket Sales Dashboard",gh:"https://github.com/ahmedabozead/supermarket-sales-analysis",
+  d:"Developed an interactive Power BI dashboard to analyze supermarket sales data for 2019.",
+  tech:["Power BI","DAX"],
+  key:["Total Sales, Total Costs, Gross Income","Branch and City analysis","Product Categories","Customer Behavior and Gender analysis","Time analysis"],
+  more:"Provides insights into sales performance across branches, cities, categories, and customer behavior."},
+ {n:"Adidas Sales Dashboard",
+  d:"Built an interactive Excel dashboard using Power Query and Pivot Tables to analyze products, regions, branches, and sales trends.",
+  tech:["Excel","Power Query","Pivot Tables"],
+  key:["Products analysis","Regions and branches","Sales trends"],
+  more:"Power Query for data preparation; Pivot Tables for interactive analysis."},
+ {n:"Pizza Sales Dashboard",gh:"https://github.com/ahmedabozead/pizza-sales-dashboard",
+  d:"Created an interactive Power BI dashboard to analyze pizza sales performance.",
+  tech:["Power BI","DAX"],
+  key:["Total Sales, Costs, Profit","Order Trends","Product Categories","Branch Performance","Sales Trends"],
+  more:"Tracks sales performance across categories and branches."}
+];
+/* ===== Render ===== */
+const $=id=>document.getElementById(id);
+$("links").innerHTML=NAV.map(n=>`<li><a href="#${n.toLowerCase()}">${n}</a></li>`).join("");
+$("hands").innerHTML=HANDS.map(x=>`<span class="chip u">${x}</span>`).join("");
+$("concepts").innerHTML=CONCEPTS.map(x=>`<span class="chip f">${x}</span>`).join("");
+$("wf").innerHTML=WORKFLOW.map(x=>`<div>${x}</div>`).join("");
+$("skillgrid").innerHTML=SKILLS.map(s=>`<div class="card"><h4>${s.t}</h4><div class="chips">${(s.u||[]).map(x=>`<span class="chip u">${x}</span>`).join("")}${(s.f||[]).map(x=>`<span class="chip f">${x}</span>`).join("")}</div></div>`).join("");
+$("pg").innerHTML=PROJECTS.map((p,i)=>`<article class="card pj rv" id="p${i}">
+<div class="mono meta">Project ${String(i+1).padStart(2,"0")}</div><h4>${p.n}</h4><p>${p.d}</p>
+${p.flow?`<div class="pipe mono">${p.flow.map((f,j)=>(j?'<span class="arr">→</span>':'')+`<span class="n">${f}</span>`).join("")}</div>`:""}
+${i===0?`<div class="stat mono"><div><b data-n="10003">0</b><small>Records</small></div><span class="arr">→</span><small>Data Processing<br>Data Quality Checks</small><span class="arr">→</span><div><b data-n="9774">0</b><small>Validated Records</small></div></div>`:""}
+<div class="tags mono">${p.tech.map(t=>`<span class="tag">${t}</span>`).join("")}</div>
+<ul>${p.key.map(k=>`<li>${k}</li>`).join("")}</ul>
+<div class="det">${p.more}</div>
+<div class="row">${p.gh?`<a class="btn s gh" href="${p.gh}" target="_blank" rel="noopener">GitHub</a>`:""}<button class="btn s" data-i="${i}" aria-expanded="false">View Details</button></div></article>`).join("");
+$("pg").addEventListener("click",e=>{const b=e.target.closest("button[data-i]");if(!b)return;const c=$("p"+b.dataset.i);const o=c.classList.toggle("open");b.setAttribute("aria-expanded",o);b.textContent=o?"Hide Details":"View Details"});
+const WEB3FORMS_KEY=""; /* paste your Web3Forms access key between the quotes */
+$("st").textContent=WEB3FORMS_KEY?"Your message is sent straight to my inbox.":"This opens your email app with the message pre-filled.";
+$("cf").addEventListener("submit",async e=>{e.preventDefault();const f=e.target,st=$("st"),btn=f.querySelector("button");if(f.b.checked)return;
+const mail=()=>{location.href="mailto:ahmednb34963@gmail.com?subject="+encodeURIComponent("Portfolio contact from "+f.n.value)+"&body="+encodeURIComponent(f.m.value+"\n\n— "+f.n.value+" ("+f.e.value+")")};
+if(!WEB3FORMS_KEY){mail();return}
+btn.disabled=true;st.textContent="Sending...";
+try{const r=await fetch("https://api.web3forms.com/submit",{method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json"},body:JSON.stringify({access_key:WEB3FORMS_KEY,subject:"Portfolio message from "+f.n.value,name:f.n.value,email:f.e.value,message:f.m.value})});const j=await r.json();if(!j.success)throw 0;st.textContent="Message sent — thank you!";f.reset()}
+catch(x){st.textContent="Couldn't send directly — opening your email app instead.";mail()}
+btn.disabled=false});
+/* Theme */
+try{const t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t}catch(e){}
+$("theme").onclick=()=>{const r=document.documentElement;const dark=(r.dataset.theme||"dark")==="dark";r.dataset.theme=dark?"light":"dark";try{localStorage.setItem("theme",r.dataset.theme)}catch(e){}};
+/* ===== Motion ===== */
+const RM=matchMedia("(prefers-reduced-motion:reduce)").matches;
+/* Loader */
+const ld=$("ld"),hide=()=>ld.classList.add("x");
+document.readyState==="complete"?setTimeout(hide,900):addEventListener("load",()=>setTimeout(hide,900));setTimeout(hide,2500);
+/* Hero entrance (staggered) */
+document.querySelectorAll(".hero .w>*:not(.row),.hero .row>*").forEach((e,i)=>{e.classList.add("hi");e.style.setProperty("--d",i)});
+/* Section stagger: title -> lead -> cards */
+document.querySelectorAll(".w.rv,#projects .w").forEach(w=>{w.classList.remove("rv");w.classList.add("sec");[...w.children].forEach((c,i)=>{if(c.id!=="pg"){c.classList.add("sr");c.style.setProperty("--i",i)}})});
+function cnt(el){const n=+el.dataset.n;if(RM){el.textContent=n.toLocaleString("en-US");return}const s=performance.now();(function f(t){const p=Math.min((t-s)/1400,1);el.textContent=Math.round(n*(1-Math.pow(1-p,3))).toLocaleString("en-US");if(p<1)requestAnimationFrame(f)})(s)}
+const io=new IntersectionObserver(es=>es.forEach(x=>{if(!x.isIntersecting)return;const t=x.target;io.unobserve(t);setTimeout(()=>{t.classList.add("in");t.querySelectorAll("[data-n]").forEach(cnt)},t.classList.contains("pj")?(+t.id.slice(1)%2)*130:0)}),{threshold:.1});
+document.querySelectorAll(".rv,.sec").forEach(el=>io.observe(el));
+/* Data flow: highlight travels node to node */
+if(!RM)document.querySelectorAll(".wf,.pipe,.flow").forEach((g,gi)=>{const ns=[...g.querySelectorAll(":scope>div,:scope>.n,:scope>.node")];let i=gi;if(!ns.length)return;setInterval(()=>{ns.forEach(n=>n.classList.remove("on"));ns[i++%ns.length].classList.add("on")},850)});
+/* Navbar */
+const nv=document.querySelector("nav"),lk=[...document.querySelectorAll("#links a")];
+addEventListener("scroll",()=>nv.classList.toggle("sc",scrollY>10),{passive:true});
+const so=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)lk.forEach(a=>a.classList.toggle("act",a.hash==="#"+e.target.id))}),{rootMargin:"-45% 0px -50% 0px"});
+document.querySelectorAll("section").forEach(s=>so.observe(s));
+/* Hero background: nodes, links, packets, light parallax */
+(()=>{const hero=document.querySelector(".hero"),cv=document.createElement("canvas");cv.id="bg";hero.prepend(cv);const c=cv.getContext("2d");
+let W,H,N=[],P=[],vis=true,col="#38bdf8",mx=0,my=0,f=0;
+function draw(){c.clearRect(0,0,W,H);c.shadowBlur=0;c.lineWidth=1;
+for(const n of N){n.x+=n.vx;n.y+=n.vy;if(n.x<0||n.x>W)n.vx*=-1;if(n.y<0||n.y>H)n.vy*=-1}
+for(let i=0;i<N.length;i++)for(let j=i+1;j<N.length;j++){const a=N[i],b=N[j],d=Math.hypot(a.x-b.x,a.y-b.y);if(d<150){c.globalAlpha=(1-d/150)*.3;c.strokeStyle=col;c.beginPath();c.moveTo(a.x,a.y);c.lineTo(b.x,b.y);c.stroke();if(!RM&&P.length<14&&Math.random()<.0008)P.push({a,b,t:0})}}
+c.globalAlpha=.55;c.fillStyle=col;for(const n of N){c.beginPath();c.arc(n.x,n.y,n.r,0,7);c.fill()}
+c.globalAlpha=1;c.shadowBlur=12;c.shadowColor=col;P=P.filter(p=>(p.t+=.012)<1);
+for(const p of P){c.beginPath();c.arc(p.a.x+(p.b.x-p.a.x)*p.t,p.a.y+(p.b.y-p.a.y)*p.t,2.6,0,7);c.fill()}}
+function rs(){const d=Math.min(devicePixelRatio||1,2);W=hero.clientWidth+40;H=hero.clientHeight+200;cv.width=W*d;cv.height=H*d;c.setTransform(d,0,0,d,0,0);
+N=Array.from({length:W<700?22:46},()=>({x:Math.random()*W,y:Math.random()*H,vx:RM?0:(Math.random()-.5)*.25,vy:RM?0:(Math.random()-.5)*.25,r:1.5+Math.random()*1.5}));draw()}
+new ResizeObserver(rs).observe(hero);new IntersectionObserver(e=>vis=e[0].isIntersecting).observe(hero);
+addEventListener("mousemove",e=>{mx=(e.clientX/innerWidth-.5)*14;my=(e.clientY/innerHeight-.5)*14},{passive:true});
+if(!RM)(function fr(){requestAnimationFrame(fr);if(!vis)return;if(f++%120===0)col=getComputedStyle(document.documentElement).getPropertyValue("--ac").trim()||col;cv.style.transform=`translate(${mx}px,${my-scrollY*.1}px)`;draw()})();
+})();
+/* Custom cursor (desktop pointers only) */
+if(!RM&&matchMedia("(hover:hover) and (pointer:fine)").matches){const r=document.createElement("div");r.className="cur";document.body.append(r);let x=0,y=0,tx=0,ty=0;
+addEventListener("mousemove",e=>{tx=e.clientX;ty=e.clientY;r.style.opacity=1},{passive:true});
+(function f(){x+=(tx-x)*.18;y+=(ty-y)*.18;r.style.transform=`translate(${x}px,${y}px)`;requestAnimationFrame(f)})();
+document.addEventListener("mouseover",e=>r.classList.toggle("big",!!e.target.closest("a,button,.card,input,textarea")))}
+</script>
+</body>
+</html>
